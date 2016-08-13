@@ -2,11 +2,11 @@
 <html lang="{{lang}}">
   <head>
     <meta charset="utf-8">
-    <title>Poké Map #02 Dynamic</title>
+    <title>Poké Map #03 Dynamic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="PokeMap#02">
+    <meta name="apple-mobile-web-app-title" content="PokeMap#03">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#3b3b3b">
     <!-- Fav- & Apple-Touch-Icons -->
@@ -40,9 +40,9 @@
         <a href="#nav"><span class="label">Options</span></a>
         <h1><a href="#">Poké Map </a></h1>
         <select onChange="window.location.href=this.value">
+            <option value="http://us.rasp.us:5555">Dynamic #03</option>
+            <option value="http://us.rasp.us:5000">Dynamic #01</option>
             <option value="http://us.rasp.us:5500">Dynamic #02</option> 
-            <option value="http://us.rasp.us:5000">Dynamic #01</option>            
-            <option value="http://us.rasp.us:5555">Dynamic #03</option> 
             <option value="http://us.rasp.us:5550">Aarhus Static</option>
             <option value="http://us.rasp.us:5551">Aalborg Static</option>
         </select>
@@ -267,7 +267,7 @@
       var centerLng = {{lng}};
     </script>
     <a title="badguycheck"
-    href="http://us.rasp.us:5500"><img
+    href="http://us.rasp.us:5555"><img
     src="//c.statcounter.com/11054226/0/88a21cd9/1/"
     alt="bgc" style="border:none;"></a>
     <script src="{{ url_for('static', filename='dist/js/map.min.js').lstrip('/') }}"></script>
