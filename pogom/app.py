@@ -65,8 +65,12 @@ class Pogom(Flask):
         args = get_args()
         fixed_display = "none" if args.fixed_location else "inline"
         search_display = "inline" if args.search_control else "none"
-
-        return render_template('map.html',
+        maphtml = 'map.html'
+        if args.html == 2:
+            maphtml = 'map_aarhus.html'
+        
+        
+        return render_template(maphtml,
                                lat=self.current_location[0],
                                lng=self.current_location[1],
                                gmaps_key=config['GMAPS_KEY'],
