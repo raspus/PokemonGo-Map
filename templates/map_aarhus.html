@@ -2,7 +2,7 @@
 <html lang="{{lang}}">
   <head>
     <meta charset="utf-8">
-    <title>Poké Map Aarhus</title>
+    <title>Poké Map Aarhus Fixed-Location</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -30,6 +30,7 @@
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='appicons/180x180.png').lstrip('/') }}" sizes="180x180">
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/app.min.css').lstrip('/') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css">
+    <link rel="stylesheet" href="static/css/map.css">
     <script src="{{ url_for('static', filename='js/vendor/modernizr.custom.js').lstrip('/') }}"></script>
   </head>
   <body id="top">
@@ -37,7 +38,14 @@
       <!-- Header -->
       <header id="header">
         <a href="#nav"><span class="label">Options</span></a>
-        <h1><a href="#">Poké Map Aarhus</a></h1>
+        <h1><a href="#">Poké Map </a></h1>
+        <select onChange="window.location.href=this.value">
+            <option value="http://us.rasp.us:5550">Aarhus Static</option>
+            <option value="http://us.rasp.us:5555">Dynamic #03</option>             
+            <option value="http://us.rasp.us:5000">Dynamic #01</option>            
+            <option value="http://us.rasp.us:5500">Dynamic #02</option>             
+            <option value="http://us.rasp.us:5551">Aalborg Static</option>
+        </select>
         <a href="#stats" id="statsToggle" class="statsNav" style="float: right;"><span class="label">Stats</span></a>
       </header>
       <!-- NAV -->
@@ -129,31 +137,11 @@
                 </label>
               </div>
             </div>
-            <div class="form-control switch-container" style="display:{{is_fixed}}" >
-              <h3>Scan follows location</h3>
-              <div class="onoffswitch">
-                <input id="geoloc-switch" type="checkbox" name="geoloc-switch" class="onoffswitch-checkbox" checked/>
-                <label class="onoffswitch-label" for="geoloc-switch">
-                <span class="switch-label" data-on="On" data-off="Off"></span>
-                <span class="switch-handle"></span>
-                </label>
-              </div>
-            </div>
             <div class="form-control switch-container" >
               <h3>Start at user's location</h3>
               <div class="onoffswitch">
                 <input id="start-at-user-location-switch" type="checkbox" name="start-at-user-location-switch" class="onoffswitch-checkbox" checked/>
                 <label class="onoffswitch-label" for="start-at-user-location-switch">
-                <span class="switch-label" data-on="On" data-off="Off"></span>
-                <span class="switch-handle"></span>
-                </label>
-              </div>
-            </div>
-            <div class="form-control switch-container" style="display:{{search_control}}">
-              <h3>Search</h3>
-              <div class="onoffswitch">
-                <input id="search-switch" type="checkbox" name="search-switch" class="onoffswitch-checkbox" checked/>
-                <label class="onoffswitch-label" for="search-switch">
                 <span class="switch-label" data-on="On" data-off="Off"></span>
                 <span class="switch-handle"></span>
                 </label>
@@ -211,6 +199,20 @@
               </select>
             </div>
           </div>
+
+          <h3>(About the map)<span class="badge blue">!</span></h3>
+          <div>
+            <iframe src="http://rasp.us/go/live.html">
+              <p>Your browser does not support 'iframes' used for live updates.</p>
+            </iframe>
+            <p>Check out <a target="_blank" href="http://go.rasp.us">go.rasp.us</a> for updates, server status and more information about the map!</p>
+            <form action="http://rasp.us/mail.php" method="post" target="_blank">
+            <input type="submit" value="Report map issues" />
+            <input type="hidden" name="button_pressed" value="1" />
+            </form>
+            <p>To preserve oversight please don't connect using a VPN.</p>
+          </div>  
+
         </div>
       </nav>
       <nav id="stats">
@@ -244,6 +246,10 @@
       var centerLat = {{lat}};
       var centerLng = {{lng}};
     </script>
+    <a title="badguycheck"
+    href="http://us.rasp.us:5550"><img
+    src="//c.statcounter.com/11054226/0/88a21cd9/1/"
+    alt="bgc" style="border:none;"></a>
     <script src="{{ url_for('static', filename='dist/js/map.min.js').lstrip('/') }}"></script>
     <script src="{{ url_for('static', filename='dist/js/stats.min.js').lstrip('/') }}"></script>
     <script defer src="https://maps.googleapis.com/maps/api/js?key={{ gmaps_key }}&amp;callback=initMap&amp;libraries=places,geometry"></script>
