@@ -322,7 +322,7 @@ function initMap () {
   })
 
   map.setMapTypeId(Store.get('map_style'))
-  //google.maps.event.addListener(map, 'idle', updateMap)
+  google.maps.event.addListener(map, 'idle', updateMap)
 
   mapLoaded = true
 
@@ -356,7 +356,7 @@ function showOverlay (id) {
   $('#location_details').show()
   location.hash = 'overlay_' + pokemonid
   updateDetails()
-  detailInterval = window.setInterval(updateDetails, 60000)
+  detailInterval = window.setInterval(updateDetails, 5000)
 
   return false
 }
