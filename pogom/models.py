@@ -283,6 +283,7 @@ class Gym(BaseModel):
 
 
 class ScannedLocation(BaseModel):
+    scanned_id = CompositeKey()
     latitude = DoubleField()
     longitude = DoubleField()
     last_modified = DateTimeField(index=True)
