@@ -136,6 +136,9 @@ class Pogom(Flask):
         if not (lat and lon):
             log.warning('Invalid next location: %s,%s', lat, lon)
             return 'bad parameters', 400
+        elif lat < 54 or lat > 58 or lon < 7 or lon > 14:
+            log.warning('Location outside Denmark: %s,%s', lat, lon)
+            return 'bad parameters / location request outside boundary', 400
         else:
             self.location_queue.put((lat, lon, 0))
             self.set_current_location((lat, lon, 0))
